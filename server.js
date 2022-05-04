@@ -2,6 +2,17 @@ const express = require("express");
 const PORT = 5000;
 const app = express();
 const productRoutes = require("./routes");
+const mongoose = require("mongoose");
+//db네임만 바꿔서 사용하면 되는것일까? 프로젝트를 새로 만드는 느낌이 아니라..?
+mongoose
+  .connect(
+    "mongodb+srv://hyeongjin:1234@tdd-app.h0e3p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+    }
+  )
+  .then(() => console.log("MongoDB Connected....."))
+  .catch((err) => console.log(err));
 
 app.use("/api/products", productRoutes);
 
